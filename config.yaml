@@ -1,0 +1,10 @@
+server:
+  transport: "stdio"
+  http_addr: ":8080"
+
+ticket:
+  base_url: "http://localhost:8081/api/v1"
+  timeout: 30
+
+auth:
+  token_header: "Authorization"

@@ -1,0 +1,10 @@
+server:
+  transport: "http"      # "stdio" 或 "http"
+  http_addr: ":8080"
+
+ticket:
+  base_url: "https://ticket.internal.company.com/api/v1"
+  timeout: 30
+
+auth:
+  token_header: "Authorization"
