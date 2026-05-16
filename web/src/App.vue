@@ -2,7 +2,7 @@
   <el-container class="app-container">
     <el-header>
       <div class="header">
-        <h1>云平台工单系统</h1>
+        <h1>智能工单系统</h1>
         <div v-if="userStore.isLoggedIn" class="user-info">
           <span>{{ userStore.displayName || userStore.username }}</span>
           <el-button link @click="handleLogout">退出</el-button>

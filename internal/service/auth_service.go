@@ -3,9 +3,9 @@ package service
 import (
 	"fmt"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/auth"
-	"github.com/cloud-mcp/cloud-mcp/internal/database"
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/auth"
+	"github.com/ai-ticket/ai-ticket/internal/database"
+	"github.com/ai-ticket/ai-ticket/internal/model"
 	"golang.org/x/crypto/bcrypt"
 )
 

@@ -1,7 +1,7 @@
 package client
 
 import (
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/model"
 )
 
 // MockTicketClient 用于测试的Mock客户端

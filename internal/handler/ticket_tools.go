@@ -8,9 +8,9 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/auth"
-	"github.com/cloud-mcp/cloud-mcp/internal/errors"
-	"github.com/cloud-mcp/cloud-mcp/internal/service"
+	"github.com/ai-ticket/ai-ticket/internal/auth"
+	"github.com/ai-ticket/ai-ticket/internal/errors"
+	"github.com/ai-ticket/ai-ticket/internal/service"
 )
 
 // TicketTools MCP工单工具集

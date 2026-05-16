@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/auth"
-	"github.com/cloud-mcp/cloud-mcp/internal/database"
+	"github.com/ai-ticket/ai-ticket/internal/auth"
+	"github.com/ai-ticket/ai-ticket/internal/database"
 )
 
 func newTestLogger() *slog.Logger {

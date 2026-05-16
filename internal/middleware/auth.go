@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/cloud-mcp/cloud-mcp/internal/auth"
+	"github.com/ai-ticket/ai-ticket/internal/auth"
 )
 
 // AuthRequired 认证中间件

@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
-	"github.com/cloud-mcp/cloud-mcp/internal/service"
+	"github.com/ai-ticket/ai-ticket/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/service"
 )
 
 // AuthHandler 认证处理器

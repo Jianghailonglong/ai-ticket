@@ -1,4 +1,4 @@
-module github.com/cloud-mcp/cloud-mcp
+module github.com/ai-ticket/ai-ticket
 
 go 1.23.2
 

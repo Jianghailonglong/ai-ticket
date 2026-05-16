@@ -2,67 +2,51 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
 	"time"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/model"
 )
 
 // 模拟数据
 var mockTickets = []model.Ticket{
 	{
-		ID:        "T-20260513-001",
+		ID:        1,
+		TicketID:  "T-20260513-001",
 		Title:     "申请扩容-订单服务-CPU 4核",
-		Type:      "scale_up",
+		Scene:     "scale_up",
 		Applicant: "zhangsan",
 		Approver:  "testuser",
-		Details: model.TicketDetail{
-			Service:  "order-service",
-			Resource: "cpu",
-			Current:  4,
-			Target:   8,
-			Reason:   "业务高峰期扩容",
-		},
+		Reason:    "业务高峰期扩容",
 		Status:    "pending",
-		CreatedAt: "2026-05-13T10:00:00Z",
-		Priority:  "medium",
+		CreatedAt: time.Now().Add(-2 * time.Hour),
+		UpdatedAt: time.Now().Add(-2 * time.Hour),
 	},
 	{
-		ID:        "T-20260513-002",
+		ID:        2,
+		TicketID:  "T-20260513-002",
 		Title:     "申请扩容-支付服务-内存 8G",
-		Type:      "scale_up",
+		Scene:     "scale_up",
 		Applicant: "lisi",
 		Approver:  "testuser",
-		Details: model.TicketDetail{
-			Service:  "payment-service",
-			Resource: "memory",
-			Current:  8,
-			Target:   16,
-			Reason:   "内存使用率超过80%",
-		},
+		Reason:    "内存使用率超过80%",
 		Status:    "pending",
-		CreatedAt: "2026-05-13T11:00:00Z",
-		Priority:  "high",
+		CreatedAt: time.Now().Add(-1 * time.Hour),
+		UpdatedAt: time.Now().Add(-1 * time.Hour),
 	},
 	{
-		ID:        "T-20260513-003",
+		ID:        3,
+		TicketID:  "T-20260513-003",
 		Title:     "申请扩容-用户服务-CPU 2核",
-		Type:      "scale_up",
+		Scene:     "scale_up",
 		Applicant: "wangwu",
 		Approver:  "admin",
-		Details: model.TicketDetail{
-			Service:  "user-service",
-			Resource: "cpu",
-			Current:  2,
-			Target:   4,
-			Reason:   "CPU使用率持续高位",
-		},
+		Reason:    "CPU使用率持续高位",
 		Status:    "pending",
-		CreatedAt: "2026-05-13T12:00:00Z",
-		Priority:  "low",
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	},
 }
 
@@ -98,6 +82,10 @@ func handleListTickets(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	if result == nil {
+		result = []model.Ticket{}
+	}
+
 	resp := model.TicketListResponse{
 		Tickets:  result,
 		Total:    len(result),
@@ -130,7 +118,7 @@ func handleTicket(w http.ResponseWriter, r *http.Request) {
 
 	// 查询单个工单
 	for _, t := range mockTickets {
-		if t.ID == ticketID {
+		if t.TicketID == ticketID {
 			w.Header().Set("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(t)
 			return
@@ -144,7 +132,7 @@ func handleReview(w http.ResponseWriter, r *http.Request, ticketID string) {
 	// 查找工单
 	var ticket *model.Ticket
 	for i := range mockTickets {
-		if mockTickets[i].ID == ticketID {
+		if mockTickets[i].TicketID == ticketID {
 			ticket = &mockTickets[i]
 			break
 		}
@@ -171,11 +159,11 @@ func handleReview(w http.ResponseWriter, r *http.Request, ticketID string) {
 
 	// 根据路径判断是同意还是拒绝
 	var status, message string
-	if contains(r.URL.Path, "/approve") {
+	if strings.Contains(r.URL.Path, "/approve") {
 		status = "approved"
 		message = "工单已批准"
 		ticket.Status = "approved"
-	} else if contains(r.URL.Path, "/reject") {
+	} else if strings.Contains(r.URL.Path, "/reject") {
 		status = "rejected"
 		message = "工单已拒绝"
 		ticket.Status = "rejected"
@@ -183,6 +171,9 @@ func handleReview(w http.ResponseWriter, r *http.Request, ticketID string) {
 		http.Error(w, `{"error":"invalid action"}`, http.StatusBadRequest)
 		return
 	}
+
+	ticket.Comment = req.Comment
+	ticket.UpdatedAt = time.Now()
 
 	resp := model.ReviewResponse{
 		Success: true,
@@ -221,17 +212,4 @@ func getUserFromToken(token string) string {
 		return "testuser"
 	}
 	return "unknown"
-}
-
-func contains(s, substr string) bool {
-	return len(s) >= len(substr) && (s == substr || len(s) > 0 && (s[0:len(substr)] == substr || contains(s[1:], substr)))
-}
-
-func init() {
-	// 重置mock数据的时间
-	mockTickets[0].CreatedAt = time.Now().Add(-2 * time.Hour).Format(time.RFC3339)
-	mockTickets[1].CreatedAt = time.Now().Add(-1 * time.Hour).Format(time.RFC3339)
-	mockTickets[2].CreatedAt = time.Now().Format(time.RFC3339)
-
-	fmt.Println("Mock工单系统初始化完成")
 }

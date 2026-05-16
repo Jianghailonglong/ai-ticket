@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/model"
 )
 
 // ListTicketsByUser 查询用户相关的工单列表

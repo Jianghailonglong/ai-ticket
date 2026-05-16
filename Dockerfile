@@ -6,7 +6,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o /cloud-mcp-server ./cmd/mcp-server/
+RUN CGO_ENABLED=0 GOOS=linux go build -o /ai-ticket-server ./cmd/mcp-server/
 
 FROM alpine:latest
 
@@ -14,10 +14,10 @@ RUN apk --no-cache add ca-certificates
 
 WORKDIR /app
 
-COPY --from=builder /cloud-mcp-server .
+COPY --from=builder /ai-ticket-server .
 COPY config.yaml.example ./config.yaml
 
 EXPOSE 8080
 
-ENTRYPOINT ["./cloud-mcp-server"]
+ENTRYPOINT ["./ai-ticket-server"]
 CMD ["-config", "config.yaml"]

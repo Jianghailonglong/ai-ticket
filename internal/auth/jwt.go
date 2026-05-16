@@ -12,7 +12,7 @@ var secretKey []byte
 func init() {
 	key := os.Getenv("JWT_SECRET")
 	if key == "" {
-		key = "cloud-mcp-secret-key-change-in-production"
+		key = "ai-ticket-secret-key-change-in-production"
 	}
 	secretKey = []byte(key)
 }

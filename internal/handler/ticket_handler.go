@@ -6,8 +6,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
-	"github.com/cloud-mcp/cloud-mcp/internal/service"
+	"github.com/ai-ticket/ai-ticket/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/service"
 )
 
 // TicketHandler 工单处理器

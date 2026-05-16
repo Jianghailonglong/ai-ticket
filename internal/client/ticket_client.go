@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/model"
 )
 
 // TicketClient 工单系统客户端接口

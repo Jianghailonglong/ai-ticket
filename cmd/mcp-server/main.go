@@ -7,8 +7,8 @@ import (
 
 	"github.com/mark3labs/mcp-go/server"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/database"
-	"github.com/cloud-mcp/cloud-mcp/internal/handler"
+	"github.com/ai-ticket/ai-ticket/internal/database"
+	"github.com/ai-ticket/ai-ticket/internal/handler"
 )
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 
 	token := os.Getenv("TICKET_TOKEN")
 
-	s := server.NewMCPServer("cloud-ticket-mcp", "1.0.0")
+	s := server.NewMCPServer("ai-ticket-mcp", "1.0.0")
 	handler.RegisterAllTools(s, token, logger)
 
 	logger.Info("starting mcp server", "transport", "stdio")

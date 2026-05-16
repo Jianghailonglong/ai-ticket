@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
+	"github.com/ai-ticket/ai-ticket/internal/database"
+	"github.com/ai-ticket/ai-ticket/internal/handler"
+	"github.com/ai-ticket/ai-ticket/internal/middleware"
 	"github.com/gin-gonic/gin"
-	"github.com/cloud-mcp/cloud-mcp/internal/database"
-	"github.com/cloud-mcp/cloud-mcp/internal/handler"
-	"github.com/cloud-mcp/cloud-mcp/internal/middleware"
 )
 
 func main() {

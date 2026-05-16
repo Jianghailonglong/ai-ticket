@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/database"
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/database"
+	"github.com/ai-ticket/ai-ticket/internal/model"
 )
 
 var (

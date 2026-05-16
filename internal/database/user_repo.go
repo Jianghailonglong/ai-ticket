@@ -3,7 +3,7 @@ package database
 import (
 	"database/sql"
 
-	"github.com/cloud-mcp/cloud-mcp/internal/model"
+	"github.com/ai-ticket/ai-ticket/internal/model"
 )
 
 // CreateUser 创建用户
